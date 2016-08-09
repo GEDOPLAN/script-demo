@@ -9,6 +9,7 @@ import de.gedoplan.baselibs.utils.util.ResourceUtil;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
@@ -21,35 +22,30 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class ScriptTest
-{
+public class ScriptTest {
   @Parameters
-  public static String[] getParameters()
-  {
+  public static String[] getParameters() {
     return ENGINE_NAMES;
   }
 
-  private String                engineName;
+  private String engineName;
   private static final String[] ENGINE_NAMES = { "js", "groovy" };
 
-  private ScriptEngine          scriptEngine;
+  private ScriptEngine scriptEngine;
 
-  public ScriptTest(String engineName)
-  {
+  public ScriptTest(String engineName) {
     this.engineName = engineName;
   }
 
   @Before
-  public void before()
-  {
+  public void before() {
     ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
     this.scriptEngine = scriptEngineManager.getEngineByName(this.engineName);
     assertNotNull("Script engine not found", this.scriptEngine);
   }
 
   @Test
-  public void testSimpleInlineScript() throws Exception
-  {
+  public void testSimpleInlineScript() throws Exception {
     System.out.printf("----- %s - testSimpleInlineScript -----\n", this.engineName);
 
     assumeThat(this.engineName, is("js"));
@@ -57,15 +53,13 @@ public class ScriptTest
   }
 
   @Test
-  public void testSimpleFileScript() throws Exception
-  {
+  public void testSimpleFileScript() throws Exception {
     System.out.printf("----- %s - testSimpleFileScript -----\n", this.engineName);
 
     loadScript("scripts/hello");
   }
 
-  private void loadScript(String name) throws Exception
-  {
+  private void loadScript(String name) throws Exception {
     String resourceName = name + "." + this.engineName;
     InputStream resourceAsStream = ResourceUtil.getResourceAsStream(resourceName);
     assumeFalse("Script not found: " + resourceName, resourceAsStream == null);
@@ -74,8 +68,7 @@ public class ScriptTest
   }
 
   @Test
-  public void testGlobalVariables() throws Exception
-  {
+  public void testGlobalVariables() throws Exception {
     System.out.printf("----- %s - testGlobalVariables -----\n", this.engineName);
 
     // Script-Variablen besetzen
@@ -94,8 +87,7 @@ public class ScriptTest
   }
 
   @Test
-  public void testInvocableFunction() throws Exception
-  {
+  public void testInvocableFunction() throws Exception {
     System.out.printf("----- %s - testInvocableFunction -----\n", this.engineName);
 
     // Script compilieren
@@ -113,8 +105,7 @@ public class ScriptTest
   }
 
   @Test
-  public void testJavaObjectAccess() throws Exception
-  {
+  public void testJavaObjectAccess() throws Exception {
     System.out.printf("----- %s - testJavaObjectAccess -----\n", this.engineName);
 
     // Script compilieren
@@ -124,5 +115,16 @@ public class ScriptTest
 
     // Funktion aufrufen
     invocable.invokeFunction("showDate", Calendar.getInstance());
+  }
+
+  @Test
+  public void testJavaClassUsage() throws Exception {
+    System.out.printf("----- %s - testJavaClassUsage -----\n", this.engineName);
+
+    // Script compilieren
+    loadScript("scripts/fillList");
+
+    List<?> list = (List<?>) this.scriptEngine.get("list");
+    list.forEach(System.out::println);
   }
 }
