@@ -5,7 +5,7 @@
   <parent>
     <groupId>de.gedoplan</groupId>
     <artifactId>build-master</artifactId>
-    <version>7.2.3</version>
+    <version>2020.6.3</version>
   </parent>
 
   <groupId>de.gedoplan.showcase</groupId>
@@ -25,13 +25,13 @@
     <dependency>
       <groupId>de.gedoplan</groupId>
       <artifactId>baselibs-utils</artifactId>
-      <version>1.0.19</version>
+      <version>1.10</version>
     </dependency>
 
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-jsr223</artifactId>
-      <version>2.4.7</version>
+      <version>3.0.6</version>
       <scope>runtime</scope>
     </dependency>
 
