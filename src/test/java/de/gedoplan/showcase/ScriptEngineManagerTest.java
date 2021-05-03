@@ -9,14 +9,12 @@ public class ScriptEngineManagerTest {
   @Test
   public void showEngines() throws Exception {
     ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
-    for (ScriptEngineFactory scriptEngineFactory : scriptEngineManager.getEngineFactories()) {
+    scriptEngineManager.getEngineFactories().forEach(ScriptEngineManagerTest::showEngine);
+  }
 
-      System.out.printf("Script Engine: %s (%s)\n", scriptEngineFactory.getEngineName(), scriptEngineFactory.getEngineVersion());
-      System.out.printf("  Language: %s (%s)\n", scriptEngineFactory.getLanguageName(), scriptEngineFactory.getLanguageVersion());
-
-      for (String alias : scriptEngineFactory.getNames()) {
-        System.out.printf("  Alias: %s\n", alias);
-      }
-    }
+  private static void showEngine(ScriptEngineFactory sef) {
+    System.out.printf("Script Engine: %s (%s)\n", sef.getEngineName(), sef.getEngineVersion());
+    System.out.printf("  Language: %s (%s)\n", sef.getLanguageName(), sef.getLanguageVersion());
+    sef.getNames().forEach(n -> System.out.printf("  Name: %s\n", n));
   }
 }
