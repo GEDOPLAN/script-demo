@@ -20,7 +20,7 @@ import org.junit.runners.Parameterized.Parameters;
 public abstract class ScriptTestBase {
   @Parameters
   public static List<String> getParameters() {
-    return List.of("js", "groovy", "python");
+    return List.of("js", "groovy", "python", "ruby");
   }
 
   protected static ScriptEngineManager scriptEngineManager;

@@ -21,7 +21,7 @@ import org.openjdk.jmh.annotations.State;
 
 @State(Scope.Benchmark)
 public class FactorialExecutor {
-  @Param({ "js", "groovy", "python", "none" })
+  @Param({ "js", "groovy", "python", "ruby", "none" })
   public String engineName;
 
   private ScriptEngine scriptEngine;
