@@ -1,4 +1,4 @@
-package de.gedoplan.showcase;
+package de.gedoplan.showcase.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;

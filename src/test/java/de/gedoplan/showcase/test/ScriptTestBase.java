@@ -1,4 +1,4 @@
-package de.gedoplan.showcase;
+package de.gedoplan.showcase.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assume.assumeFalse;

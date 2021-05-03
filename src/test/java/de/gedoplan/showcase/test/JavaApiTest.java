@@ -1,8 +1,12 @@
-package de.gedoplan.showcase;
+package de.gedoplan.showcase.test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import de.gedoplan.showcase.Gleis;
+import de.gedoplan.showcase.Signal;
+import de.gedoplan.showcase.SignalStellung;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package de.gedoplan.showcase;
+package de.gedoplan.showcase.test;
 
 import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
