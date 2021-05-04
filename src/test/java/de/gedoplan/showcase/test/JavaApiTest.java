@@ -3,6 +3,7 @@ package de.gedoplan.showcase.test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import de.gedoplan.showcase.Gleis;
 import de.gedoplan.showcase.Signal;
@@ -10,6 +11,9 @@ import de.gedoplan.showcase.SignalStellung;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.script.Invocable;
+import javax.script.ScriptException;
 
 import org.junit.Test;
 
@@ -67,6 +71,27 @@ public class JavaApiTest extends ScriptTestBase {
     ((List<?>) list).forEach(System.out::println);
 
     assertThat("Listen-Länge falsch", ((List<?>) list).size(), is(3));
+  }
+
+  @Test
+  public void testThrowException() throws Exception {
+    System.out.printf("----- %s - testThrowException -----\n", this.scriptFileExt);
+
+    // Script compilieren
+    loadScript("scripts/factorial");
+
+    Invocable invocable = (Invocable) this.scriptEngine;
+    try {
+      invocable.invokeFunction("factorial", 0);
+    } catch (IllegalArgumentException e) {
+      return;
+    } catch (ScriptException e) {
+      if (e.getCause() instanceof IllegalArgumentException) {
+        return;
+      }
+    }
+
+    fail("Invocation should throw an IllegalArgumentException");
   }
 
 }

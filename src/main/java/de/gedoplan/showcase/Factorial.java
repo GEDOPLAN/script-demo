@@ -3,6 +3,14 @@ package de.gedoplan.showcase;
 public abstract class Factorial {
 
   public static int factorial(int n) {
-    return n == 1 ? 1 : n * factorial(n - 1);
+    if (n <= 0) {
+      throw new IllegalArgumentException("n must be a natural number");
+    }
+
+    if (n == 1) {
+      return 1;
+    }
+
+    return n * factorial(n - 1);
   }
 }
