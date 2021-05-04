@@ -24,14 +24,14 @@ public class JavaApiTest extends ScriptTestBase {
 
   @Test
   public void testFrei() throws Exception {
-    System.out.printf("----- %s - testFrei -----\n", this.engineName);
+    System.out.printf("----- %s - testFrei -----\n", this.scriptFileExt);
 
     doTest(false, SignalStellung.FAHRT);
   }
 
   @Test
   public void testBesetzt() throws Exception {
-    System.out.printf("----- %s - testBesetzt -----\n", this.engineName);
+    System.out.printf("----- %s - testBesetzt -----\n", this.scriptFileExt);
 
     doTest(true, SignalStellung.HALT);
   }
@@ -56,7 +56,7 @@ public class JavaApiTest extends ScriptTestBase {
 
   @Test
   public void testJavaClassUsage() throws Exception {
-    System.out.printf("----- %s - testJavaClassUsage -----\n", this.engineName);
+    System.out.printf("----- %s - testJavaClassUsage -----\n", this.scriptFileExt);
 
     // Script compilieren
     loadScript("scripts/fillList");

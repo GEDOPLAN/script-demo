@@ -1,5 +1,7 @@
 package de.gedoplan.showcase.test;
 
+import java.util.stream.Collectors;
+
 import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 
@@ -13,8 +15,17 @@ public class ScriptEngineManagerTest {
   }
 
   private static void showEngine(ScriptEngineFactory sef) {
-    System.out.printf("Script Engine: %s (%s)\n", sef.getEngineName(), sef.getEngineVersion());
-    System.out.printf("  Language: %s (%s)\n", sef.getLanguageName(), sef.getLanguageVersion());
-    sef.getNames().forEach(n -> System.out.printf("  Name: %s\n", n));
+    System.out.printf("""
+      Script Engine: %s (%s)
+        Language: %s (%s)
+        Names: %s
+        Extensions: %s
+      """,
+      sef.getEngineName(),
+      sef.getEngineVersion(),
+      sef.getLanguageName(),
+      sef.getLanguageVersion(),
+      sef.getNames().stream().collect(Collectors.joining(" ")),
+      sef.getExtensions().stream().collect(Collectors.joining(" ")));
   }
 }

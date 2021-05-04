@@ -21,8 +21,8 @@ import org.openjdk.jmh.annotations.State;
 
 @State(Scope.Benchmark)
 public class FactorialExecutor {
-  @Param({ "js", "groovy", "python", "ruby", "none" })
-  public String engineName;
+  @Param({ "js", "groovy", "py", "rb", "none" })
+  public String scriptFileExt;
 
   private ScriptEngine scriptEngine;
 
@@ -32,15 +32,15 @@ public class FactorialExecutor {
 
   @Setup(Level.Trial)
   public void setup() throws Exception {
-    System.out.println("\nSetting up benchmark for " + this.engineName);
+    System.out.println("\nSetting up benchmark for " + this.scriptFileExt);
 
-    if (this.engineName.equals("none")) {
+    if (this.scriptFileExt.equals("none")) {
       this.factorialSupplier = this::execJavaFunction;
 
     } else {
-      this.scriptEngine = new ScriptEngineManager().getEngineByName(this.engineName);
+      this.scriptEngine = new ScriptEngineManager().getEngineByExtension(this.scriptFileExt);
 
-      String resourceName = "scripts/factorial." + this.engineName;
+      String resourceName = "scripts/factorial." + this.scriptFileExt;
       try (
           InputStream resourceAsStream = ResourceUtil.getResourceAsStream(resourceName);
           Reader reader = new InputStreamReader(resourceAsStream);) {

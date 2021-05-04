@@ -19,7 +19,7 @@ public class InvocableTest extends ScriptTestBase {
 
   @Test
   public void testInvocable() throws Exception {
-    System.out.printf("----- %s - testInvocable -----\n", this.engineName);
+    System.out.printf("----- %s - testInvocable -----\n", this.scriptFileExt);
 
     // Script compilieren
     loadScript("scripts/factorial");

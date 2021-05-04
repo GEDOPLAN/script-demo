@@ -20,15 +20,15 @@ import org.junit.runners.Parameterized.Parameters;
 public abstract class ScriptTestBase {
   @Parameters
   public static List<String> getParameters() {
-    return List.of("js", "groovy", "python", "ruby");
+    return List.of("js", "groovy", "py", "rb");
   }
 
   protected static ScriptEngineManager scriptEngineManager;
-  protected String engineName;
+  protected String scriptFileExt;
   protected ScriptEngine scriptEngine;
 
-  protected ScriptTestBase(String engineName) {
-    this.engineName = engineName;
+  protected ScriptTestBase(String scriptFileExt) {
+    this.scriptFileExt = scriptFileExt;
   }
 
   @BeforeClass
@@ -38,12 +38,12 @@ public abstract class ScriptTestBase {
 
   @Before
   public void before() {
-    this.scriptEngine = scriptEngineManager.getEngineByName(this.engineName);
-    assertNotNull("Script engine not found", this.scriptEngine);
+    this.scriptEngine = scriptEngineManager.getEngineByExtension(this.scriptFileExt);
+    assertNotNull("Script engine not found for extension " + this.scriptFileExt, this.scriptEngine);
   }
 
   protected void loadScript(String name) throws Exception {
-    String resourceName = name + "." + this.engineName;
+    String resourceName = name + "." + this.scriptFileExt;
     InputStream resourceAsStream = ResourceUtil.getResourceAsStream(resourceName);
     assumeFalse("Script not found: " + resourceName, resourceAsStream == null);
 

@@ -14,7 +14,7 @@ public class BindingTest extends ScriptTestBase {
 
   @Test
   public void testEngineScope() throws Exception {
-    System.out.printf("----- %s - testEngineScope -----\n", this.engineName);
+    System.out.printf("----- %s - testEngineScope -----\n", this.scriptFileExt);
 
     // Skript-Variablen besetzen
     this.scriptEngine.put("netto", 100);
@@ -38,7 +38,7 @@ public class BindingTest extends ScriptTestBase {
 
   @Test
   public void testManagerScope() throws Exception {
-    System.out.printf("----- %s - testManagerScope -----\n", this.engineName);
+    System.out.printf("----- %s - testManagerScope -----\n", this.scriptFileExt);
 
     // Skript-Variablen besetzen
     this.scriptEngine.put("netto", 100);
