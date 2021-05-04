@@ -16,7 +16,7 @@
   <packaging>jar</packaging>
 
   <properties>
-    <java.code.version>16</java.code.version>
+    <java.code.version>15</java.code.version>
     <graal-js.version>21.1.0</graal-js.version>
     <groovy-jsr223.version>3.0.8</groovy-jsr223.version>
     <jython.version>2.7.2</jython.version>
