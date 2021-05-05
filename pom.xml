@@ -21,7 +21,7 @@
     <groovy-jsr223.version>3.0.8</groovy-jsr223.version>
     <jython.version>2.7.2</jython.version>
     <jmh.version>1.29</jmh.version>
-    <lombok.version>1.18.16</lombok.version>
+    <lombok.version>1.18.20</lombok.version>
   </properties>
 
   <repositories>
