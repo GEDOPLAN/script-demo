@@ -20,7 +20,7 @@ public class SimpleScriptTest extends ScriptTestBase {
     switch (this.scriptFileExt) {
     case "js" -> this.scriptEngine.eval("print('Hello, JavaScript!');");
     case "groovy" -> this.scriptEngine.eval("println(\"Hello, Groovy!\");");
-    case "python" -> this.scriptEngine.eval("print('Hello, Python')");
+    case "py" -> this.scriptEngine.eval("print('Hello, Python')");
     default -> assumeTrue("No inline script found for " + this.scriptFileExt, false);
     }
   }
